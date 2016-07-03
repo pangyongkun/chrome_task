@@ -14,7 +14,8 @@ $(function () {
         ".l-footer__primary," +
         "footer,.site-message," +
         ".submeta," +
-        "aside")
+        "aside," +
+        ".email-sub")
         .remove();
 
 
@@ -27,6 +28,7 @@ $(function () {
         var docX = document.documentElement.clientWidth;
         var docY = document.documentElement.clientHeight;
 
+        //获取文本
         var text = "";
         if (document.selection) {
             text = document.selection.createRange().text;
@@ -36,47 +38,65 @@ $(function () {
         }
         if (text != "") {
 
-            $("body").on("click","#tooltip",function(){
-                alert("hello");
-            })
+            translateHttp(event, text, x, y,docX,docY);
 
-            $.get("https://api.shanbay.com/bdc/search/?word=" + text, function (data) {
-                var audioUrl = data.data.audio;
-
-                var tooltip = "<div id='tooltip' class='tooltip tooltip_container' ><img id='play' src='http://pic.qiantucdn.com/58pic/14/40/27/22Y58PICrm2_1024.png' style='width:12px;height:12px'/>"
-                    + data.data.definition +
-                    "</div>";
-                $("body").append(tooltip);
-
-
-                $("#tooltip")
-                    .css({
-                        "top": (e.pageY + y) + "px",
-                        "left": (e.pageX + x) + "px",
-                    })
-                    .show("fast")
-                    .on("click", function () {
-                        alert("hello")
-                    });
-
-            });
 
         }
-    }).mousedown(function () {
-        $("#tooltip").remove();
     });
 
 
-    function doit(url) {
+    /**
+     *
+     * @param e
+     * @param word
+     * @param x
+     * @param y
+     * @param docx
+     * @param docy
+     */
+    function translateHttp(e, word, x, y,docx,docy) {
 
-        console.log("hello");
 
-        alert(url);
-        /*var audio;
-         audio = document.createElement("audio");
-         audio.src = url;
-         audio.play();*/
+        $("#tooltip").remove();
 
+        //获取翻译
+        $.get("https://api.shanbay.com/bdc/search/?word=" + word, function (data) {
+
+            var audioUrl = data.data.audio;
+            var tooltip;
+
+            if (data.data.definition == undefined||data.data.definition==null) {
+                tooltip = "<div id='tooltip' class='tooltip tooltip_container' >"
+                    + "请选择要翻译的词!" +
+                    "</div>";
+            } else {
+                tooltip = "<div id='tooltip' class='tooltip tooltip_container' >"
+                    + data.data.definition +
+                    "</div>";
+            }
+            $("body").append(tooltip).children("#tooltip")
+                .css({
+                    "top": (e.pageY -x) + "px",
+                    "left": (e.pageX - y) + "px",
+                })
+                .show("fast")
+                .mouseover(function () {
+                    $(this).on("click", {url: audioUrl}, function (event) {
+                        console.log(">>> " + event.data.url);
+                        var audio = document.createElement("audio");
+                        audio.src = event.data.url;
+                        audio.id = "audio"
+                        audio.play();
+
+                    })
+                })
+                .mouseout(function () {
+                    $("body").children("#tooltip").remove();
+                    $("body").children("audio[id='audio']").remove();
+                });
+
+
+        });
     }
 
 

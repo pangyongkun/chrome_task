@@ -1,14 +1,17 @@
 {
-  "name": "我的第一个Chrome插件",
+  "name": "扇贝小作业",
   "version": "1.0.1",
   "manifest_version": 2,
-  "description": "我的第一个Chrome插件",
+  "description": "扇贝小作业",
   "icons": {
-    "48": "img/logo.gif"
+    "48": "img/logo.png"
   },
   "permissions": [
     "*://api.shanbay.com/*"
   ],
+  "browser_action":{
+    "default_icon": "img/logo.png"
+  },
   "content_scripts": [
     {
       "matches": [
@@ -18,11 +21,8 @@
         "bower_components/jquery/dist/jquery.min.js",
         "js/content.js"
       ],
-      "css":[
+      "css": [
         "css/main.css"
-      ],
-      "file":[
-
       ]
     }
   ]
