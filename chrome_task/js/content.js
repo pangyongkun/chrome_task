@@ -234,13 +234,13 @@ $(function () {
         var url = window.location.href;
         var strs = url.split("page_");
         var nowpage;
-        if (strs.length == 1) {
+        if (strs.length == 1||strs.length ==0) {
             nowpage=1;
         }else{
             nowpage=strs[1];
         }
         window.location.href="#page_"+nowpage;
-        return Number(strs[1]);
+        return Number(nowpage);
     }
 
 
