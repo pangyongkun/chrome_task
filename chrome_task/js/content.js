@@ -37,6 +37,16 @@ $(function () {
 
 
         }
+    }).mousedown(function(){
+        setTimeout(function(){
+            if($("#tooltip").is(":hover")){
+                console.log(">>> ","focus");
+                return;
+            }else{
+                console.log(">>> ","remove");
+                $("#tooltip").remove();
+            }
+        },3000);
     });
 
 
