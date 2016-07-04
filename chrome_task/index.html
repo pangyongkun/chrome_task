@@ -3,22 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <script src="js/main.js"></script>
+
+
+    <style>
+        #scroll {
+            width: 32px;
+            float: right;
+            position: fixed;
+            right: 10px;
+            bottom: 200px;
+            z-index: 9999;
+        }
+        ul li{
+            list-style: none;
+        }
+        #scroll li a {
+            background: #fff;
+            font-size: 16px;
+            color: #cacaca;
+            width: 32px;
+            height: 32px;
+            line-height: 28px;
+            text-align: center;
+            vertical-align: middle;
+            margin-top: 4px;
+            display: block;
+            cursor: pointer;
+            background: rgba(255,255,255,.6);
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.04);
+        }
+
+    </style>
 </head>
 
 
 <body>
 
+<ul id="scroll" >
+    <li><a class="scroll-h" title="上一页"><img src="img/up.png"></a></li>
+    <li><a class="scroll-h" title="上一页">5页</a></li>
+    <li><a title="跳到"><input style="width: 30px;margin-top: 3px;border: 0;" class="scroll-c" name="page"></a></li>
+    <li><a class="scroll-b" title="下一页"><img src="img/down.png"></a></li>
+</ul>
 
-
-<script>
-    chrome.browserAction.onClicked.addListener(function (tab) {
-        // No tabs or host permissions needed!
-        console.log('Turning ' + tab.url + ' red!');
-        chrome.tabs.executeScript({
-            code: 'document.body.style.backgroundColor="red"'
-        });
-    });
-</script>
 </body>
 </html>

@@ -14,3 +14,68 @@
     background-repeat: no-repeat;
     background-position: 5px 5px;
 }
+
+
+.jumpto-subnav {
+    position: absolute;
+    top: 0;
+    left: -120px;
+    width: 100px;
+    background: rgba(0,0,0,0.7);
+}
+
+
+
+/*scroll*/
+#scroll {
+    width: 40px;
+    float: right;
+    position: fixed;
+    right: 5%;
+    bottom: 50%;
+    z-index: 9999;
+}
+ul li{
+    list-style: none;
+}
+#scroll li a {
+    background: #fff;
+    font-size: 4px;
+    color: #cacaca;
+    width: 40px;
+    height: 40px;
+    line-height: 28px;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 4px;
+    display: block;
+    cursor: pointer;
+    background: rgba(255,255,255,.6);
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    text-decoration: none;
+}
+
+#scroll li input {
+    background: #fff;
+    font-size: 4px;
+    color: #cacaca;
+    width: 40px;
+    height: 40px;
+    line-height: 28px;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 4px;
+    display: block;
+    cursor: pointer;
+    background: rgba(255,255,255,.6);
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+
+
+
+
